@@ -15,14 +15,23 @@ import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> implements Observer {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private List<String> data;
     private List<String> datafull;
 
+    public RecyclerViewAdapter() {
+        data = new ArrayList<>();
+    }
+
     public RecyclerViewAdapter(List<String> data) {
         this.data = data;
         this.datafull = new ArrayList<>(data);
+    }
+
+    public void addItem(String item){
+        data.add(item);
+        datafull = new ArrayList<>(data);
     }
 
     @NonNull
@@ -44,23 +53,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
         return data.size();
-    }
-
-    @Override
-    public void onChange(String string) {
-        data.clear();
-        if (string == null || string.length() == 0) data.addAll(datafull);
-        else {
-            String filterPattern = string.toLowerCase().trim();
-
-            for (String item : datafull) {
-                if (item.toLowerCase().contains(filterPattern)) {
-                    data.add(item);
-                }
-            }
-        }
-        notifyDataSetChanged();
-        Log.d(TAG, "onChange: " + string);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
