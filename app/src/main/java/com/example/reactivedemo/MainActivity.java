@@ -8,16 +8,12 @@ import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.EditText;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
 import rx.Observer;
-import rx.Subscriber;
-import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,22 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         editText= (EditText) findViewById(R.id.editText);
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
