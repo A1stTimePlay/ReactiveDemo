@@ -34,6 +34,32 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         datafull = new ArrayList<>(data);
     }
 
+    public void filterData(String string) {
+
+        data.clear();
+
+        if (string == null || string.length() == 0) data.addAll(datafull);
+
+        else {
+
+            String filterPattern = string.toLowerCase().trim();
+
+
+            for (String item : datafull) {
+
+                if (item.toLowerCase().contains(filterPattern)) {
+
+                    data.add(item);
+
+                }
+
+            }
+
+        }
+
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,6 +81,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return data.size();
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView textView;
@@ -64,4 +92,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             textView = (TextView) itemView.findViewById(R.id.textView);
         }
     }
+
 }
